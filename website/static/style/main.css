@@ -1,0 +1,123 @@
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+a {
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    max-height: 5rem;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.nav-item {
+    margin: 0 2rem;
+    font-size: 2rem;
+}
+
+.logo {
+    margin: 0 2rem;
+}
+
+.logo img {
+    height: 100%
+}
+
+.login-section {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.login-section .btn {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.sign-in {
+    border-color: #4869D6;
+}
+.sign-in:hover {
+    background-color: #4869D6;
+}
+
+.sign-up {
+    border-color: #ACF53D;
+}
+.sign-up:hover {
+    background-color: #ACF53D;
+}
+
+.logout:hover {
+    border-color: grey;
+    background-color: grey;
+}
+
+.btn a {
+    color: #000;
+}
+
+
+/* FORM */
+
+.signing {
+    margin-left: auto;
+    margin-right: auto;
+    width: 20rem;
+}
+
+.input_field {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.input_field label {
+    font-weight: 500;
+}
+
+.input_field input {
+    margin-left: auto;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+
+.input_btn {
+    text-align: center;
+}
+
+.input_btn .btn {
+    border: 2px solid dodgerblue;
+    font-size: 1rem;
+    padding: 5px 10px !important;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-top: 1.5rem;
+}
+
+.input_btn .btn:hover {
+    background-color: dodgerblue;
+    cursor: pointer;
+}
+
+
+
+
+

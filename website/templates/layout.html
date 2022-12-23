@@ -1,0 +1,44 @@
+{% block head %}
+<head>
+    <title>HELLO</title>
+    <link rel="stylesheet" href="static/style/main.css">
+</head>
+{% endblock %}
+
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <img src="static/img/logo.png">
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="#">Hey!</a>
+        </div>
+        <div class="nav-item">
+            <a href="#">Second</a>
+        </div>
+        {% if g.user %}
+        <div class="login-section">
+            <div class='user_name'>
+                <p>{{ g.user.name }}</p>
+            </div>
+            <div class='logout btn'>
+                <a href="logout">Log Out</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="login-section">
+            <div class="sign-in btn">
+                <a href="signin">Sign In</a>
+            </div>
+            <div class="sign-up btn">
+                <a href="signup">Sign Up</a>
+            </div>
+        </div>
+        {% endif %}
+    </header>
+{% block content %}
+{% endblock %}
+</body>
