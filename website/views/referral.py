@@ -5,7 +5,12 @@ mod = Blueprint('referral', __name__)
 
 @mod.route('/referral')
 def referral():
-	return render_template('referral/index.html')
+	referrals = None
+
+	if g.user:
+		referrals = Referral.query.filter_by(owner_id=g.user.id).all()
+
+	return render_template('referral/index.html', referrals=referrals)
 
 
 @mod.route('/referral/click')
@@ -28,11 +33,13 @@ def click():
 
 @mod.route('/referral/<link>', methods=['GET', 'POST'])
 def make_ref(link):
+	ref_link = RefLink.query.filter_by(link=link).first()
+
+	if ref_link is None:
+		return '<h1 style="text-align:center; margin-top: 10rem; font-size: 4rem">NOT FOUND 404</h1>'
+
 	if request.method == 'GET':
-		if RefLink.query.filter_by(link=link).count() > 0:
-			return render_template('general/signup.html', ref=True)
-		else:
-			return '<h1 style="text-align:center; margin-top: 10rem; font-size: 4rem">NOT FOUND 404</h1>'
+		return render_template('general/signup.html', ref=True)
 
 	elif request.method == 'POST':
 		if g.user is None:
@@ -43,6 +50,7 @@ def make_ref(link):
 					login=request.form['login'],
 					password=request.form['password'],
 					name=request.form['name'],
+					invite_id=ref_link.id
 				)
 				db_session.add(new_user)
 				db_session.commit()

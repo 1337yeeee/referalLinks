@@ -18,6 +18,27 @@
   </div>
 </div>
 
+{% if referrals %}
+<div class="container-ref">
+  <table>
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <th>Link</th>
+        <th>Date</th>
+      </tr>
+      {% for ref in referrals %}
+      <tr>
+        <td>{{ ref.user.name }}</td>
+        <td>{{ ref.user.invite.link }}</td>
+        <td>{{ ref.user.date_created.strftime('%d of %B %Y %H:%M:%S') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
 <script type="text/javascript">
   // link gnerator button
   $('#click').click(function(e){

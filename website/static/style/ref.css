@@ -40,3 +40,23 @@
 	color: #CCC;
 }
 
+.container-ref table {
+	margin-right: auto;
+	margin-left: auto;
+	border-collapse: collapse;
+	width: 40%;
+	text-align: center;
+}
+
+.container-ref td {
+	padding: 0.5rem 1rem;
+}
+
+.container-ref tbody tr:nth-child(even) {
+	background-color: rgba(211, 211, 211, .5);
+}
+
+.container-ref tbody tr:nth-child(odd) {
+	background-color: rgba(233, 233, 233 .5);
+}
+

@@ -133,3 +133,4 @@ dmypy.json
 tmp.txt
 .db
 *.db
+migrate.py

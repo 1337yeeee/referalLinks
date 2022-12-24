@@ -1,6 +1,6 @@
 from datetime import datetime
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
-from sqlalchemy.orm import scoped_session, sessionmaker, backref, relation
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy.orm import scoped_session, sessionmaker, backref, relationship
 from sqlalchemy.ext.declarative import declarative_base
 
 from website import app
@@ -27,11 +27,17 @@ class User(Model):
 	password = Column('password', String(200))
 	login = Column('login', String(200), unique=True)
 	name = Column(String(200))
+	invite_id = Column(Integer, ForeignKey('ref_links.id'), nullable=True)
+	date_created = Column(DateTime)
 
-	def __init__(self, name, login, password):
+	invite = relationship('RefLink', uselist=False, foreign_keys=[invite_id])
+
+	def __init__(self, name, login, password, invite_id=None):
 		self.name = name
 		self.login = login
 		self.password = password
+		self.invite_id = invite_id
+		self.date_created = datetime.utcnow()
 
 	def to_json(self):
 		return dict(name=self.name, is_admin=self.is_admin, login=self.login)
@@ -52,12 +58,14 @@ class RefLink(Model):
 	id = Column(Integer, primary_key=True)
 	user_id = Column(Integer, ForeignKey('users.user_id'))
 	link = Column(String(255), unique=True)
+	date_created = Column(DateTime)
 
-	# user = relation(User, backref='ref_links')
+	user = relationship(User, uselist=False, foreign_keys=[user_id])
 
 	def __init__(self, user_id):
 		self.user_id = user_id
 		self.link = RefLink.generateLink()
+		self.date_created = datetime.utcnow()
 
 	@staticmethod
 	def generateLink():
@@ -78,8 +86,8 @@ class Referral(Model):
 	owner_id = Column(Integer, ForeignKey('users.user_id'))
 	user_id = Column(Integer, ForeignKey('users.user_id'), unique=True)
 
-	# owner = relation(User, backref='referrals')
-	# user = relation(User, backref='referrals')
+	owner = relationship(User, uselist=False, foreign_keys=[owner_id])
+	user = relationship(User, uselist=False, foreign_keys=[user_id])
 
 	def __init__(self, owner_id, user_id):
 		self.owner_id = owner_id
