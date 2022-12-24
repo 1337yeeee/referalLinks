@@ -13,7 +13,10 @@ def load_current_user():
 
 
 from website.views import index
+from website.views import referral
 app.register_blueprint(index.mod)
-
+app.register_blueprint(referral.mod)
+del index
+del referral
 
 from website.database import User

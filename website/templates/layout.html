@@ -20,6 +20,11 @@
             <a href="#">Second</a>
         </div>
         {% if g.user %}
+        <div class="nav-item">
+            <a href="referral">Rferral</a>
+        </div>
+        {% endif %}
+        {% if g.user %}
         <div class="login-section">
             <div class='user_name'>
                 <p>{{ g.user.name }}</p>

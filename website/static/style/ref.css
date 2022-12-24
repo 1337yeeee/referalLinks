@@ -1,0 +1,42 @@
+.container {
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+}
+
+.create-btn {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.create-btn button {
+	font-size: 2rem;
+	border: 3px solid #D5DBDB;
+	border-radius: 10px;
+	padding: 0.5rem 1rem;
+	background-color: #D5DBDB;
+}
+
+.create-btn button:hover {
+	cursor: pointer;
+	background-color: #BFC9CA;
+}
+
+.link {
+	display: inline-block;
+	font-size: 1.5rem;
+	font-weight: 500;
+	text-decoration: underline;
+	padding: 10px 20px;
+}
+
+.link:hover {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.ps {
+	font-size: 0.8rem;
+	color: #CCC;
+}
+
