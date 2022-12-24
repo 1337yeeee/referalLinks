@@ -81,9 +81,9 @@ class Referral(Model):
 	# owner = relation(User, backref='referrals')
 	# user = relation(User, backref='referrals')
 
-	def __init__(self, owner, user):
-		self.owner = owner
-		self.user = user
+	def __init__(self, owner_id, user_id):
+		self.owner_id = owner_id
+		self.user_id = user_id
 
 	def to_json(self):
 		return dict(id=self.id,

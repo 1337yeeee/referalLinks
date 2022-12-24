@@ -4,7 +4,21 @@
     {{ super() }}
 {% endblock %}
 
+
+{% block signing %}
+    {% if ref %}
+    {% else %}
+        {{ super() }}
+    {% endif %}
+{% endblock %}
+
 {% block content %}
+    {% if g.user %}
+    <div class="message_container">
+        <h3 class="message">You are already signed up</h3>
+        <h3 class="message">Introduce us to your friends</h3>
+    </div>
+    {% else %}
     <div class='signing'>
         <form action='' method='POST'>
             <div class='input_field'>
@@ -27,4 +41,5 @@
             </div>
         </form>
     </div>
+    {% endif %}
 {% endblock %}

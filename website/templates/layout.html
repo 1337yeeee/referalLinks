@@ -1,7 +1,7 @@
 {% block head %}
 <head>
     <title>HELLO</title>
-    <link rel="stylesheet" href="static/style/main.css">
+    <link rel="stylesheet" href="../static/style/main.css">
 </head>
 {% endblock %}
 
@@ -10,7 +10,7 @@
     <header>
         <div class="logo">
             <a href="/">
-                <img src="static/img/logo.png">
+                <img src="../static/img/logo.png">
             </a>
         </div>
         <div class="nav-item">
@@ -30,18 +30,20 @@
                 <p>{{ g.user.name }}</p>
             </div>
             <div class='logout btn'>
-                <a href="logout">Log Out</a>
+                <a href="/logout">Log Out</a>
             </div>
         </div>
         {% else %}
-        <div class="login-section">
-            <div class="sign-in btn">
-                <a href="signin">Sign In</a>
+            {% block signing %}
+            <div class="login-section">
+                <div class="sign-in btn">
+                    <a href="signin">Sign In</a>
+                </div>
+                <div class="sign-up btn">
+                    <a href="signup">Sign Up</a>
+                </div>
             </div>
-            <div class="sign-up btn">
-                <a href="signup">Sign Up</a>
-            </div>
-        </div>
+            {% endblock %}
         {% endif %}
     </header>
 {% block content %}
