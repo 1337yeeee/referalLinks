@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, g, request, redirect, flash, make_response
 from website.database import db_session, User, RefLink, Referral
+from sqlalchemy import func
 
 mod = Blueprint('referral', __name__)
 
@@ -8,9 +9,20 @@ def referral():
 	referrals = None
 
 	if g.user:
+		current_link = RefLink.query.filter_by(
+			user_id=g.user.id,
+			date_created=db_session.query(func.max(RefLink.date_created)
+				)
+		).first()
+
+		if current_link:
+			current_link = 'http://127.0.0.1:5000/referral/' + current_link.link
+		else:
+			current_link = ''
+
 		referrals = Referral.query.filter_by(owner_id=g.user.id).all()
 
-	return render_template('referral/index.html', referrals=referrals)
+	return render_template('referral/index.html', referrals=referrals, link=current_link)
 
 
 @mod.route('/referral/click')
@@ -18,15 +30,9 @@ def click():
 	if not g.user:
 		return '404'
 
-	link = RefLink.query.filter_by(user_id=g.user.id).first()
-
-	if link:
-		link.link = RefLink.generateLink()
-		db_session.commit()
-	else:
-		link = RefLink(g.user.id)
-		db_session.add(link)
-		db_session.commit()
+	link = RefLink(g.user.id)
+	db_session.add(link)
+	db_session.commit()
 
 	return 'http://127.0.0.1:5000/referral/' + link.link
 

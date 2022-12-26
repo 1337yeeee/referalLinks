@@ -9,7 +9,6 @@ app.config.from_object('websiteconfig')
 def load_current_user():
     g.user = User.query.filter_by(id=int(request.cookies['user'])).first() \
         if 'user' in request.cookies else None
-    print(g.user)
 
 
 from website.views import index
